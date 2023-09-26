@@ -13,7 +13,8 @@
 		<link rel="icon" href="images/yz.png" />
 	</head>
 	<body class="is-preload">
-
+	<div id="table-of-contents"></div>
+		
 		<!-- Header -->
 			<header id="header">
 				<div class="inner">
@@ -504,6 +505,31 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+<script>
+  	document.addEventListener("DOMContentLoaded", function () {
+    		// Get all the headings you want to include in the TOC (e.g., <h2> and <h3>).
+    		var headings = document.querySelectorAll("h2, h3");
+
+    		// Create an empty string to store the HTML for the TOC.
+    		var tocHTML = '<h2>Table of Contents</h2><ul>';
+
+    		// Loop through the headings and generate TOC entries.
+    		headings.forEach(function (heading) {
+      			// Create an anchor link with a unique ID for each heading.
+      			var anchorID = heading.textContent.replace(/\s+/g, "-").toLowerCase();
+      			heading.setAttribute("id", anchorID);
+
+      			// Create a TOC entry with a link to the heading.
+      			tocHTML += '<li><a href="#' + anchorID + '">' + heading.textContent + "</a></li>";
+    		});
+
+    		// Close the TOC list.
+    		tocHTML += "</ul>";
+
+    		// Insert the TOC HTML into the "table-of-contents" container.
+    		document.getElementById("table-of-contents").innerHTML = tocHTML;
+  	});
+</script>
 
 	</body>
 </html>
